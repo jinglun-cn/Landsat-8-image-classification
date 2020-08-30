@@ -16,7 +16,7 @@ Tensorflow >=2.0
 
 ### Sites for Training
 
-The input training sites are provided in the file:
+The sites of interests consist of 529 locations in 32 states in the US, which are provided in the following file:
 
 ```bash
 ./sites_train.csv
@@ -39,7 +39,7 @@ The whole process might take a long time and requires at least 22G disk space, d
 
 For each input site, the script crops a 3840 m x 3840 m rectangle images, each with the given site located in the center.
 
-The extracted data consist of 529 locations from 32 states in the US. The extracted data are saved as a numpy array with datatype "uint16" and shape (sample_index, x-coor, y-coor, band). 
+The extracted data are saved as a numpy array with datatype "uint16" and shape (sample_index, x-coor, y-coor, band). 
 
 
 ### Extracted Data Example
@@ -57,9 +57,9 @@ python train.py
 
 The script reads numpy array, generates small patches and train the CNN.
 
-In [[Sharma et. al., 2017]](https://www.sciencedirect.com/science/article/pii/S0893608017301806), a patch-based CNN is trained and tested using Landsat-8 data within the Florida Everglades ecosystem. As our data are significantly larger, the oringinal model achieved only x% in validation accuracy. 
+In [[Sharma et al., 2017]](https://www.sciencedirect.com/science/article/pii/S0893608017301806), a patch-based CNN is trained and tested using Landsat-8 data within the Florida Everglades ecosystem. As our data are significantly larger and more diverse, the oringinal model achieved only 78% in validation accuracy. 
 
-Our model uses larger patch size, wider Convolutional layers and batch normalization to improve the validation accuracy to 89%.
+Our model uses larger patch size, wider convolutional layers and batch normalization to improve the validation accuracy to 89%.
 
 ### Classify sites using pretrained model
 
@@ -102,4 +102,4 @@ them are 128*128 arrays.
 
 ### License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
