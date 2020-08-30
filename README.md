@@ -30,7 +30,7 @@ The input training sites are provided in the file:
 python data_processing.py
 ```
 
-The script downloads Landsat-8 and NLCD(2016) data from Amazon S3.
+The script downloads [Landsat-8](https://www.usgs.gov/land-resources/nli/landsat/landsat-8?qt-science_support_page_related_con=0#qt-science_support_page_related_con) and [National Land Cover Database 2016(NLCD2016)](https://www.mrlc.gov/national-land-cover-database-nlcd-2016) from Amazon S3.
 
 For Landsat-8, input Lat/Lon are converted to Path/Row to match
 the product ID of scenes. The level 1 scenes in 2016 with corresponding path/row and the least cloud coverage are downloaded from Amazon S3 Storage. OLI bands 1-7 and 9 are extracted.
@@ -39,7 +39,8 @@ The whole process might take a long time and requires at least 22G disk space, d
 
 For each input site, the script crops a 3840 m x 3840 m rectangle images, each with the given site located in the center.
 
-The extracted data are saved as a numpy array with datatype "uint16" and shape (sample_index, x-coor, y-coor, band).
+The extracted data consist of 529 locations from 32 states in the US. The extracted data are saved as a numpy array with datatype "uint16" and shape (sample_index, x-coor, y-coor, band). 
+
 
 ### Extracted Data Example
 
@@ -55,6 +56,10 @@ python train.py
 ```
 
 The script reads numpy array, generates small patches and train the CNN.
+
+In [[Sharma et. al., 2017]](https://www.sciencedirect.com/science/article/pii/S0893608017301806), a patch-based CNN is trained and tested using Landsat-8 data within the Florida Everglades ecosystem. As our data are significantly larger, the oringinal model achieved only x% in validation accuracy. 
+
+Our model uses larger patch size, wider Convolutional layers and batch normalization to improve the validation accuracy to 89%.
 
 ### Classify sites using pretrained model
 
