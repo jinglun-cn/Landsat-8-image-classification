@@ -135,8 +135,6 @@ from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler, R
 from tensorflow.keras import backend as K
 from tensorflow.keras.models import Model
 
-patch_size = 15
-
 strategy = tf.distribute.MirroredStrategy()
 print('Number of devices: {}'.format(strategy.num_replicas_in_sync))
 
@@ -166,6 +164,18 @@ y_train_categ = tf.keras.utils.to_categorical(y_train, num_classes=n_classes)
 y_valid_categ = tf.keras.utils.to_categorical(y_valid, num_classes=n_classes)
 
 inputShape = (patch_size, patch_size, 8)
+
+def patch_cnn_old():
+    model = Sequential()
+    model.add(Conv2D(8,kernel_size=(3, 3), strides=(1, 1), padding='same', activation='relu', input_shape=inputShape))
+    model.add(Conv2D(16,kernel_size=(3, 3), strides=(1, 1), padding='same', activation='relu'))
+    model.add(Conv2D(32,kernel_size=(3, 3), strides=(1, 1), padding='same', activation='relu'))
+    model.add(Conv2D(64,kernel_size=(3, 3), strides=(1, 1), padding='same', activation='relu'))
+    model.add(Conv2D(128,kernel_size=(3, 3), strides=(1, 1), padding='same', activation='relu'))
+    model.add(Flatten())
+    model.add(Dense(3200, activation='relu'))
+    model.add(Dense(n_classes, activation='softmax'))
+    return model
 
 def patch_cnn():
     model = Sequential()
