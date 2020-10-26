@@ -57,9 +57,7 @@ python train.py
 
 The script reads numpy array, generates small patches and train the CNN.
 
-In [[Sharma et al., 2017]](https://www.sciencedirect.com/science/article/pii/S0893608017301806), a patch-based CNN is trained and tested using Landsat-8 data within the Florida Everglades ecosystem. As our data are significantly larger and more diverse, the oringinal model achieved only 78% in validation accuracy. 
-
-Our model uses larger patch size, wider convolutional layers and batch normalization to improve the validation accuracy to 89%.
+In [[Sharma et al., 2017]](https://www.sciencedirect.com/science/article/pii/S0893608017301806), a patch-based CNN is trained and tested using Landsat-8 data within the Florida Everglades ecosystem. As our data are significantly larger and more diverse, the oringinal model achieved only 78% in validation accuracy. Our model is able to to improve the validation accuracy to 89%.
 
 ### Classify sites using pretrained model
 
