@@ -3,6 +3,7 @@
 *.hdf5
 try.ipynb
 *data/
+*log/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
