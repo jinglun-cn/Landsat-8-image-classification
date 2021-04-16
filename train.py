@@ -33,7 +33,10 @@ def data_prep(patch_size=15):
                         21:1,22:1,23:1,24:1,31:2,41:3,42:3,
                         43:3,51:4,52:4,71:5,72:5,73:5,
                         74:5,81:6,82:6,90:7,95:7}
-
+    simple_labels = {0:'Open Water', 1:'Developed', 2:'Barren Land',
+                     3:'Forest', 4:'Scrub', 5:'Grassland/Crops', 6:'Pasture',
+                     7:'Wetland'
+                     }
     nlcd_dic['developed'] = {21:0,22:1,23:2,24:3}
 
     sublist_labels = [21, 22, 23, 24]
