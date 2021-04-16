@@ -15,7 +15,7 @@ def data_prep(patch_size=15):
     arr = arr[:-n_test,:,:,:]
 
     # See the distri
-    arr_nlcd = arr[:,8,:,:]
+    arr_nlcd = arr[:,:,:,8]
     freq = np.unique(arr_nlcd, return_counts=True)
 
     leg_num = np.array([0,11,12,21,22,23,24,31,41,42,43,51,52,71,72,73,74,81,82,90,95])

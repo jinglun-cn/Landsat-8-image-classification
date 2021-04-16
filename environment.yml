@@ -41,6 +41,7 @@ dependencies:
   - blinker=1.4=py_1
   - blosc=1.20.1=hd408876_0
   - bokeh=2.2.3=py38_0
+  - boost-cpp=1.70.0=ha2d47e9_1
   - boto=2.49.0=py38_0
   - bottleneck=1.3.2=py38heb32a55_1
   - brotlipy=0.7.0=py38h7b6447c_1000
@@ -66,7 +67,7 @@ dependencies:
   - cudatoolkit=10.1.243=h6bb024c_0
   - cudnn=7.6.5.32=hc0a50b0_1
   - cupti=10.1.168=0
-  - curl=7.71.1=hbc83047_1
+  - curl=7.68.0=hf8cf82a_0
   - cycler=0.10.0=py38_0
   - cython=0.29.21=py38he6710b0_0
   - cytoolz=0.11.0=py38h7b6447c_0
@@ -87,12 +88,16 @@ dependencies:
   - flask=1.1.2=py_0
   - fontconfig=2.13.0=h9420a91_0
   - freetype=2.10.4=h5ab3b9f_0
+  - freexl=1.0.5=h516909a_1002
   - fribidi=1.0.10=h7b6447c_0
   - fsspec=0.8.3=py_0
   - future=0.18.2=py38_1
   - gast=0.3.3=py_0
+  - gdal=2.3.3=py38hbb2a789_0
+  - geos=3.7.1=hf484d3e_1000
   - get_terminal_size=1.0.0=haa9412d_0
   - gevent=20.9.0=py38h7b6447c_0
+  - giflib=5.1.9=h516909a_0
   - glib=2.66.1=h92f7085_0
   - glob2=0.7=py_0
   - gmp=6.1.2=h6c8ec71_1
@@ -104,6 +109,7 @@ dependencies:
   - gstreamer=1.14.0=hb31296c_0
   - h5py=2.10.0=py38h7918eee_0
   - harfbuzz=2.4.0=hca77d97_1
+  - hdf4=4.2.13=0
   - hdf5=1.10.4=hb1b8bf9_0
   - heapdict=1.0.1=py_0
   - html5lib=1.1=py_0
@@ -129,6 +135,7 @@ dependencies:
   - jinja2=2.11.2=py_0
   - joblib=0.17.0=py_0
   - jpeg=9b=h024ee3a_2
+  - json-c=0.13.1=hbfbb72e_1002
   - json5=0.9.5=py_0
   - jsonschema=3.2.0=py_2
   - jupyter=1.0.0=py38_7
@@ -138,26 +145,33 @@ dependencies:
   - jupyterlab=2.2.6=py_0
   - jupyterlab_pygments=0.1.2=py_0
   - jupyterlab_server=1.2.0=py_0
+  - kealib=1.4.7=hd0c454d_6
   - keras-preprocessing=1.1.2=pyhd8ed1ab_0
   - keyring=21.4.0=py38_1
   - kiwisolver=1.3.0=py38h2531618_0
-  - krb5=1.18.2=h173b8e3_0
+  - krb5=1.16.4=h2fd8d38_0
   - lazy-object-proxy=1.4.3=py38h7b6447c_0
   - lcms2=2.11=h396b838_0
   - ld_impl_linux-64=2.33.1=h53a641e_7
   - libarchive=3.4.2=h62408e4_0
-  - libcurl=7.71.1=h20c2e04_1
+  - libcurl=7.68.0=hda55be3_0
+  - libdap4=3.19.1=0
   - libedit=3.1.20191231=h14c3975_1
   - libffi=3.3=he6710b0_2
   - libgcc-ng=9.1.0=hdf63c60_0
+  - libgdal=2.3.3=h2e7e64b_0
   - libgfortran-ng=7.3.0=hdf63c60_0
+  - libkml=1.3.0=h4fcabce_1010
   - liblief=0.10.1=he6710b0_0
   - libllvm10=10.0.1=hbcb73fb_5
   - libllvm9=9.0.1=he513fc3_1
+  - libnetcdf=4.6.1=h11d0813_2
   - libpng=1.6.37=hbc83047_0
+  - libpq=11.5=hd9ab2ff_2
   - libprotobuf=3.13.0.1=h8b12597_0
   - libsodium=1.0.18=h7b6447c_0
   - libspatialindex=1.9.3=he6710b0_0
+  - libspatialite=4.3.0a=hb5ec416_1026
   - libssh2=1.9.0=h1ba5d50_1
   - libstdcxx-ng=9.1.0=hdf63c60_0
   - libtiff=4.1.0=h2733197_1
@@ -202,6 +216,7 @@ dependencies:
   - numpy-base=1.19.2=py38hfa32c7d_0
   - numpydoc=1.1.0=pyhd3eb1b0_1
   - olefile=0.46=py_0
+  - openjpeg=2.3.1=h981e76c_3
   - openpyxl=3.0.5=py_0
   - openssl=1.1.1h=h516909a_0
   - opt_einsum=3.3.0=pyhd8ed1ab_1
@@ -227,6 +242,9 @@ dependencies:
   - pkginfo=1.6.1=py38h06a4308_0
   - pluggy=0.13.1=py38_0
   - ply=3.11=py38_0
+  - poppler=0.65.0=h581218d_1
+  - poppler-data=0.4.10=0
+  - proj4=5.2.0=he1b5a44_1006
   - prometheus_client=0.8.0=py_0
   - prompt-toolkit=3.0.8=py_0
   - prompt_toolkit=3.0.8=0
@@ -238,7 +256,7 @@ dependencies:
   - pycodestyle=2.6.0=py_0
   - pycosat=0.6.3=py38h7b6447c_1
   - pycparser=2.20=py_2
-  - pycurl=7.43.0.6=py38h1ba5d50_0
+  - pycurl=7.43.0.5=py38h4400d41_2
   - pydocstyle=5.1.1=py_0
   - pyflakes=2.2.0=py_0
   - pygments=2.7.2=pyhd3eb1b0_0
@@ -323,6 +341,7 @@ dependencies:
   - tk=8.6.10=hbc83047_0
   - toml=0.10.1=py_0
   - toolz=0.11.1=py_0
+  - tornado=6.1=py38h25fe258_0
   - tqdm=4.50.2=py_0
   - traitlets=5.0.5=py_0
   - typing-extensions=3.7.4.3=0
@@ -331,6 +350,7 @@ dependencies:
   - unicodecsv=0.14.1=py38_0
   - unixodbc=2.3.9=h7b6447c_0
   - urllib3=1.25.11=py_0
+  - util-linux=2.36=py38hf13698a_0
   - watchdog=0.10.3=py38_0
   - wcwidth=0.2.5=py_0
   - webencodings=0.5.1=py38_1
@@ -338,6 +358,7 @@ dependencies:
   - wheel=0.35.1=py_0
   - widgetsnbextension=3.5.1=py38_0
   - wurlitzer=2.0.1=py38_0
+  - xerces-c=3.2.2=hea5cb30_1003
   - xlrd=1.2.0=py_0
   - xlsxwriter=1.3.7=py_0
   - xlwt=1.3.0=py38_0
@@ -355,6 +376,9 @@ dependencies:
   - zope.interface=5.1.2=py38h7b6447c_0
   - zstd=1.4.5=h9ceee32_0
   - pip:
+    - affine==2.3.0
+    - click-plugins==1.1.1
+    - cligj==0.7.1
     - flatbuffers==1.12
     - google-auth==1.28.0
     - google-auth-oauthlib==0.4.4
@@ -367,7 +391,9 @@ dependencies:
     - pandas==1.2.4
     - protobuf==3.15.6
     - pyasn1-modules==0.2.8
+    - rasterio==1.2.2
+    - shapely==1.7.1
+    - snuggs==1.4.7
     - termcolor==1.1.0
-    - tornado==6.1
     - wrapt==1.12.1
 prefix: /home/jinglun/anaconda3
