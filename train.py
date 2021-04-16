@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection  import train_test_split
-from sklearn.metrics import plot_confusion_matrix
+
 
 def data_prep(patch_size=15):
 
@@ -219,17 +219,6 @@ def train(x_train, y_train_categ, x_valid, y_valid_categ, \
                     )
     return model                
 
-def confusion_matrix(classifier, x_valid, y_valid_categ):
-
-    # class_names = []
-    title = 'Confusion Matrix'
-    disp = plot_confusion_matrix(classifier, x_valid, y_valid_categ,
-                                #  display_labels=class_names,
-                                 cmap=plt.cm.Blues,
-                                 normalize=True)
-    disp.ax_.set_title(title)
-    print(disp.confusion_matrix)
-    plt.show()
 
 if __name__ == '__main__':
     x_train, y_train, x_valid, y_valid = data_prep()
@@ -239,4 +228,3 @@ if __name__ == '__main__':
     y_valid_categ = tf.keras.utils.to_categorical(y_valid, num_classes=n_classes)
 
     model = train(x_train, y_train_categ, x_valid, y_valid_categ)
-    confusion_matrix(model, x_valid, y_valid_categ)

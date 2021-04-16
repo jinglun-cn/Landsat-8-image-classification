@@ -11,7 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 import tensorflow as tf
-
+from sklearn.metrics import plot_confusion_matrix
 
 model_path = './pretrained.hdf5'
 sites_path = './sites_classify.csv'
@@ -119,6 +119,18 @@ def classify(arr_l8, model, patch_size):
     return arr_cls            
 
 arr_cls = classify(arr_l8, model, patch_size)
+
+def confusion_matrix(classifier, x_valid, y_valid_categ):
+
+    # class_names = []
+    title = 'Confusion Matrix'
+    disp = plot_confusion_matrix(classifier, x_valid, y_valid_categ,
+                                #  display_labels=class_names,
+                                 cmap=plt.cm.Blues,
+                                 normalize=True)
+    disp.ax_.set_title(title)
+    print(disp.confusion_matrix)
+    plt.show()
 
 # output results to a 4D numpy array
 np.save('./arr_cls.npy', arr_cls)
