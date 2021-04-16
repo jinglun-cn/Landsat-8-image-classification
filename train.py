@@ -5,10 +5,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection  import train_test_split
+from sklearn.metrics import plot_confusion_matrix
 
 def data_prep(patch_size=15):
 
     arr = np.load('./L8_NLCD_extracted_dataset.npy')
+    n_test = 3
+    arr_test = arr[-n_test:,:,:,:] 
+    arr = arr[:-n_test,:,:,:]
 
     # See the distri
     arr_nlcd = arr[:,8,:,:]
@@ -136,7 +140,8 @@ from tensorflow.keras.callbacks import ModelCheckpoint, LearningRateScheduler, R
 from tensorflow.keras import backend as K
 from tensorflow.keras.models import Model
 
-def train(x_train, y_train, x_valid, y_valid ,patch_size=15, model_id = 'exp0.34'):
+def train(x_train, y_train_categ, x_valid, y_valid_categ, \
+          patch_size=15, n_classes=9, model_id = 'exp0.34'):
 
     strategy = tf.distribute.MirroredStrategy()
     print('Number of devices: {}'.format(strategy.num_replicas_in_sync))
@@ -160,12 +165,6 @@ def train(x_train, y_train, x_valid, y_valid ,patch_size=15, model_id = 'exp0.34
         csv_logger = tf.keras.callbacks.CSVLogger(os.path.join(logdir,'log.csv'), append=True)
         return [tb_callback, model_checkpoint_callback, csv_logger]
     callbacks = get_callbacks(logdir)
-
-    n_classes = 9
-    inputShape = (patch_size,patch_size, 8)
-
-    y_train_categ = tf.keras.utils.to_categorical(y_train, num_classes=n_classes)
-    y_valid_categ = tf.keras.utils.to_categorical(y_valid, num_classes=n_classes)
 
     inputShape = (patch_size, patch_size, 8)
 
@@ -218,7 +217,26 @@ def train(x_train, y_train, x_valid, y_valid ,patch_size=15, model_id = 'exp0.34
                     verbose=2,validation_data=(x_valid,y_valid_categ),
                     callbacks=callbacks,
                     )
+    return model                
+
+def confusion_matrix(classifier, x_valid, y_valid_categ):
+
+    # class_names = []
+    title = 'Confusion Matrix'
+    disp = plot_confusion_matrix(classifier, x_valid, y_valid_categ,
+                                #  display_labels=class_names,
+                                 cmap=plt.cm.Blues,
+                                 normalize=True)
+    disp.ax_.set_title(title)
+    print(disp.confusion_matrix)
+    plt.show()
 
 if __name__ == '__main__':
     x_train, y_train, x_valid, y_valid = data_prep()
-    train(x_train, y_train, x_valid, y_valid)
+
+    n_classes = 9
+    y_train_categ = tf.keras.utils.to_categorical(y_train, num_classes=n_classes)
+    y_valid_categ = tf.keras.utils.to_categorical(y_valid, num_classes=n_classes)
+
+    model = train(x_train, y_train_categ, x_valid, y_valid_categ)
+    confusion_matrix(model, x_valid, y_valid_categ)
