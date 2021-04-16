@@ -86,33 +86,39 @@ arr_l8 = np.swapaxes(arr_l8, 1, 3)
 patch_size = 15
 model = tf.keras.models.load_model(model_path)
 
-s = patch_size
-N, X, Y, B = arr_l8.shape[0], arr_l8.shape[1], arr_l8.shape[2], arr_l8.shape[3]
-# Pixel (x, y) in sample n is the center of patches[m]
-# m= n*(X-s+1)*(Y-s+1) + (y-2)*(X-s+1) + (x-2), x,y,n starts from 0
+def classify(arr_l8, model, patch_size):
+    ''''arr_l8 is a 4D array of size (N, X, Y, B) '''
+    s = patch_size
+    N, X, Y, B = arr_l8.shape[0], arr_l8.shape[1], arr_l8.shape[2], arr_l8.shape[3]
+    # Pixel (x, y) in sample n is the center of patches[m]
+    # m= n*(X-s+1)*(Y-s+1) + (y-2)*(X-s+1) + (x-2), x,y,n starts from 0
 
-# extract patches
-patches = []
-for n in range(N):
-    for y in range(Y-s+1):         
-        for x in range(X-s+1):
-                # patch = arr_l8[n, x:x+s, y:y+s, :].copy()
-                # cls = np.argmax(model.predict(patch[np.newaxis, ...]), axis=-1)[0]
-                # arr_cls[n, x+s//2, y+s//2] = cls
-                patches.append(arr_l8[n, x:x+s, y:y+s, :])
+    # extract patches
+    patches = []
+    for n in range(N):
+        for y in range(Y-s+1):         
+            for x in range(X-s+1):
+                    # patch = arr_l8[n, x:x+s, y:y+s, :].copy()
+                    # cls = np.argmax(model.predict(patch[np.newaxis, ...]), axis=-1)[0]
+                    # arr_cls[n, x+s//2, y+s//2] = cls
+                    patches.append(arr_l8[n, x:x+s, y:y+s, :])
 
-patches = np.array(patches)
-labels = np.argmax(model.predict(patches), axis=-1)
+    patches = np.array(patches)
+    labels = np.argmax(model.predict(patches), axis=-1)
 
-# classification array
-arr_cls = np.zeros(arr_l8.shape[:-1])
+    # classification array
+    arr_cls = np.zeros(arr_l8.shape[:-1])
 
-i = 0
-for n in range(N):
-    for y in range(Y-s+1):         
-        for x in range(X-s+1):
-            arr_cls[n, x+s//2, y+s//2] = labels[i]
-            i += 1
+    i = 0
+    for n in range(N):
+        for y in range(Y-s+1):         
+            for x in range(X-s+1):
+                arr_cls[n, x+s//2, y+s//2] = labels[i]
+                i += 1
+    
+    return arr_cls            
+
+arr_cls = classify(arr_l8, model, patch_size)
 
 # output results to a 4D numpy array
 np.save('./arr_cls.npy', arr_cls)
