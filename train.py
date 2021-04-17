@@ -4,15 +4,13 @@ import os, sys, time, shutil
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import colors
 from sklearn.model_selection  import train_test_split
 
 
 def data_prep(patch_size=15):
 
     arr = np.load('./L8_NLCD_extracted_dataset.npy')
-    n_test = 3
-    arr_test = arr[-n_test:,:,:,:] 
-    arr = arr[:-n_test,:,:,:]
 
     # See the distri
     arr_nlcd = arr[:,:,:,8]
@@ -33,10 +31,19 @@ def data_prep(patch_size=15):
                         21:1,22:1,23:1,24:1,31:2,41:3,42:3,
                         43:3,51:4,52:4,71:5,72:5,73:5,
                         74:5,81:6,82:6,90:7,95:7}
+                        
     simple_labels = {0:'Open Water', 1:'Developed', 2:'Barren Land',
                      3:'Forest', 4:'Scrub', 5:'Grassland/Crops', 6:'Pasture',
-                     7:'Wetland'
+                     7:'Wetland', 8:'Null'
                      }
+
+    c_hex = ['#3264aa', '#fa0000', '#8c96aa', '#0a8228', '#8caa14', 
+            '#3cf014', '#d2f014', '#6ea0be', '#000000']
+    clist = [(50, 100, 170), (250, 0, 0), (140, 150, 170), (10, 130, 40), 
+            (140, 170, 20), (60, 240, 20), (210, 240, 20), (110, 160, 190), (0,0,0)]
+
+    cmap = colors.ListedColormap(clist)
+
     nlcd_dic['developed'] = {21:0,22:1,23:2,24:3}
 
     sublist_labels = [21, 22, 23, 24]

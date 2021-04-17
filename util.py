@@ -247,4 +247,4 @@ def classify(arr_l8, model, patch_size):
                 arr_cls[n, x+s//2, y+s//2] = labels[i]
                 i += 1
     
-    return arr_cls            
+    return arr_cls.astype('int')            
